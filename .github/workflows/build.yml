@@ -1,0 +1,147 @@
+name: Build PalmClaw Terminal
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-bootstrap:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [ aarch64, arm, i686, x86_64 ]
+
+    steps:
+      - name: Clone termux-packages
+        run: git clone --depth 1 https://github.com/termux/termux-packages.git termux-packages
+
+      - name: Write package-name override (officially supported fork mechanism)
+        run: |
+          mkdir -p "$HOME/.config/termux"
+          cat > "$HOME/.config/termux/termuxrc.sh" << 'EOF'
+          TERMUX_APP__PACKAGE_NAME="com.palmclaw.termux"
+          EOF
+
+      - name: Build bootstrap for ${{ matrix.arch }}
+        working-directory: termux-packages
+        run: |
+          set -o pipefail
+          TERMUX_DOCKER_RUN_EXTRA_ARGS="--volume $HOME/.config/termux/termuxrc.sh:/home/builder/.config/termux/termuxrc.sh" \
+            ./scripts/run-docker.sh ./scripts/build-bootstraps.sh --architectures ${{ matrix.arch }} 2>&1 | tee "$RUNNER_TEMP/bootstrap-build-${{ matrix.arch }}.log"
+
+      - name: Locate produced bootstrap zip
+        working-directory: termux-packages
+        run: |
+          find . -maxdepth 1 -iname 'bootstrap-*.zip' -exec cp {} "$RUNNER_TEMP/" \;
+          ls -la "$RUNNER_TEMP"/bootstrap-*.zip
+
+      - name: Upload bootstrap artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bootstrap-zip-${{ matrix.arch }}
+          path: ${{ runner.temp }}/bootstrap-*.zip
+          if-no-files-found: error
+
+      - name: Upload build log (always, for debugging)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bootstrap-build-log-${{ matrix.arch }}
+          path: ${{ runner.temp }}/bootstrap-build-${{ matrix.arch }}.log
+          if-no-files-found: warn
+
+  build-app:
+    needs: build-bootstrap
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Download bootstrap artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: bootstrap-zip-*
+          path: bootstrap-artifacts
+          merge-multiple: false
+
+      - name: Place bootstrap zips for Gradle
+        run: |
+          mkdir -p app/src/main/cpp
+          for arch in aarch64 arm i686 x86_64; do
+            src=$(find bootstrap-artifacts -iname "bootstrap-${arch}.zip" | head -n1)
+            if [ -z "$src" ]; then
+              echo "Missing bootstrap zip for $arch"; exit 1
+            fi
+            cp "$src" "app/src/main/cpp/bootstrap-${arch}.zip"
+          done
+          ls -la app/src/main/cpp/
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-termux-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            gradle-termux-${{ runner.os }}-
+
+      - name: Build debug APK
+        id: build
+        shell: bash
+        run: |
+          set -o pipefail
+          ./gradlew assembleDebug --stacktrace --no-daemon 2>&1 | tee build.log
+        continue-on-error: true
+
+      - name: Upload APK artifact
+        if: steps.build.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: palmclaw-terminal-debug
+          path: |
+            app/build/outputs/apk/**/*.apk
+          if-no-files-found: warn
+
+      - name: Publish build log on failure
+        if: steps.build.outcome == 'failure'
+        continue-on-error: true
+        env:
+          GH_TOKEN_FOR_PUSH: x
+        run: |
+          set +e
+          git config user.email "ci-bot@local"
+          git config user.name "CI Bot"
+          git fetch origin ci-logs:ci-logs 2>/dev/null
+          if git show-ref --verify --quiet refs/heads/ci-logs; then
+            git checkout ci-logs
+          else
+            git checkout --orphan ci-logs
+            git rm -rf . >/dev/null 2>&1
+          fi
+          mkdir -p logs
+          tail -n 2000 build.log > "logs/run-${{ github.run_id }}.log"
+          cp "logs/run-${{ github.run_id }}.log" logs/latest.log
+          git add logs/
+          git commit -m "Build log for run ${{ github.run_id }}"
+          git push origin ci-logs --force
+
+      - name: Fail job if build failed
+        if: steps.build.outcome == 'failure'
+        run: exit 1
