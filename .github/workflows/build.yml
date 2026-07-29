@@ -8,6 +8,8 @@ on:
 jobs:
   build-bootstrap:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -51,6 +53,34 @@ jobs:
           name: bootstrap-build-log-${{ matrix.arch }}
           path: ${{ runner.temp }}/bootstrap-build-${{ matrix.arch }}.log
           if-no-files-found: warn
+
+      - name: Publish build log to ci-logs branch (always, for debugging)
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          git clone --depth 1 --branch ci-logs "https://github.com/${{ github.repository }}.git" ci-logs-repo 2>/dev/null
+          if [ ! -d ci-logs-repo ]; then
+            git clone --depth 1 "https://github.com/${{ github.repository }}.git" ci-logs-repo
+            cd ci-logs-repo
+            git checkout --orphan ci-logs
+            git rm -rf . >/dev/null 2>&1
+          else
+            cd ci-logs-repo
+          fi
+          git config user.email "ci-bot@local"
+          git config user.name "CI Bot"
+          mkdir -p logs
+          cp "${{ runner.temp }}/bootstrap-build-${{ matrix.arch }}.log" "logs/bootstrap-${{ matrix.arch }}-${{ github.run_id }}.log" 2>/dev/null || echo "no log" > "logs/bootstrap-${{ matrix.arch }}-${{ github.run_id }}.log"
+          cp "logs/bootstrap-${{ matrix.arch }}-${{ github.run_id }}.log" "logs/bootstrap-${{ matrix.arch }}-latest.log"
+          git add logs/
+          git commit -m "Bootstrap build log for ${{ matrix.arch }} run ${{ github.run_id }}" || true
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          for i in 1 2 3 4 5; do
+            git push origin ci-logs && break
+            git pull --rebase origin ci-logs
+            sleep $((RANDOM % 5 + 1))
+          done
 
   build-app:
     needs: build-bootstrap
