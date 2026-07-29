@@ -26,6 +26,19 @@ jobs:
           TERMUX_APP__PACKAGE_NAME="com.palmclaw.termux"
           EOF
 
+      - name: Workaround xorg.freedesktop.org TLS cert issue (SHA-256 checksum still enforced)
+        working-directory: termux-packages
+        run: |
+          # xorg.freedesktop.org is currently serving a certificate that fails
+          # validation (needed transitively for xorg-util-macros -> fontconfig).
+          # Skip TLS verification only for that host; the downloaded file's
+          # SHA-256 is still checked against the pinned checksum in build.sh,
+          # so content integrity is unaffected.
+          sed -i \
+            's/--location           # Follow redirects/--location           # Follow redirects\n\t\t$( [[ "$URL" == *xorg.freedesktop.org* ]] \&\& echo --insecure )/' \
+            scripts/build/termux_download.sh
+          grep -n "insecure" scripts/build/termux_download.sh
+
       - name: Build bootstrap for ${{ matrix.arch }}
         working-directory: termux-packages
         run: |
