@@ -19,6 +19,14 @@ jobs:
       - name: Clone termux-packages
         run: git clone --depth 1 https://github.com/termux/termux-packages.git termux-packages
 
+      - name: Add swap space (mitigate possible OOM during compilation)
+        run: |
+          sudo fallocate -l 8G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          free -h
+
       - name: Write package-name override (officially supported fork mechanism)
         run: |
           mkdir -p "$HOME/.config/termux"
@@ -55,7 +63,7 @@ jobs:
         working-directory: termux-packages
         run: |
           set -o pipefail
-          TERMUX_DOCKER_RUN_EXTRA_ARGS="--volume $HOME/.config/termux/termuxrc.sh:/home/builder/.config/termux/termuxrc.sh" \
+          TERMUX_DOCKER_RUN_EXTRA_ARGS="--volume $HOME/.config/termux/termuxrc.sh:/home/builder/.config/termux/termuxrc.sh --env MAKEFLAGS=-j2" \
             ./scripts/run-docker.sh ./scripts/build-bootstraps.sh --architectures ${{ matrix.arch }} 2>&1 | tee "$RUNNER_TEMP/bootstrap-build-${{ matrix.arch }}.log"
 
       - name: Locate produced bootstrap zip
