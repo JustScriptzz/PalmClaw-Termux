@@ -20,12 +20,21 @@ jobs:
         run: git clone --depth 1 https://github.com/termux/termux-packages.git termux-packages
 
       - name: Add swap space (mitigate possible OOM during compilation)
+        continue-on-error: true
         run: |
-          sudo fallocate -l 8G /swapfile
+          set +e
+          echo "Disk space before:"; df -h /
+          if sudo fallocate -l 8G /swapfile; then
+            echo "fallocate succeeded"
+          else
+            echo "fallocate failed, falling back to dd"
+            sudo dd if=/dev/zero of=/swapfile bs=1M count=8192 status=progress
+          fi
           sudo chmod 600 /swapfile
           sudo mkswap /swapfile
           sudo swapon /swapfile
           free -h
+          echo "Swap step finished with status $?"
 
       - name: Write package-name override (officially supported fork mechanism)
         run: |
