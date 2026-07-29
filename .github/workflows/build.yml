@@ -39,6 +39,18 @@ jobs:
             scripts/build/termux_download.sh
           grep -n "insecure" scripts/build/termux_download.sh
 
+      - name: Workaround termux-am Android SDK permission issue in builder image
+        working-directory: termux-packages
+        run: |
+          # The package-builder Docker image's Android SDK directory isn't
+          # writable by sdkmanager when it auto-installs missing components
+          # for termux-am's small Gradle sub-build ("Failed to read or create
+          # install properties file"). Fix permissions before gradle runs.
+          sed -i \
+            's/\texport ANDROID_HOME/\tsudo chmod -R 777 "$ANDROID_HOME" 2>\/dev\/null || true\n\texport ANDROID_HOME/' \
+            packages/termux-am/build.sh
+          grep -n -A1 -B1 "chmod -R 777" packages/termux-am/build.sh
+
       - name: Build bootstrap for ${{ matrix.arch }}
         working-directory: termux-packages
         run: |
