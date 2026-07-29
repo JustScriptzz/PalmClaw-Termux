@@ -64,9 +64,9 @@ jobs:
           # for termux-am's small Gradle sub-build ("Failed to read or create
           # install properties file"). Fix permissions before gradle runs.
           sed -i \
-            's/\texport ANDROID_HOME/\tsudo chmod -R 777 "$ANDROID_HOME" 2>\/dev\/null || true\n\texport ANDROID_HOME/' \
+            's/\texport ANDROID_HOME/\techo "CANARY: before ANDROID_HOME chmod, path=$ANDROID_HOME"\n\tchmod -R 777 "$ANDROID_HOME" || echo "CANARY: chmod failed with code $?"\n\techo "CANARY: after ANDROID_HOME chmod"\n\texport ANDROID_HOME/' \
             packages/termux-am/build.sh
-          grep -n -A1 -B1 "chmod -R 777" packages/termux-am/build.sh
+          grep -n -A3 -B1 "CANARY" packages/termux-am/build.sh
 
       - name: Build bootstrap for ${{ matrix.arch }}
         working-directory: termux-packages
