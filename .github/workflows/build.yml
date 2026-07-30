@@ -56,17 +56,21 @@ jobs:
             scripts/build/termux_download.sh
           grep -n "insecure" scripts/build/termux_download.sh
 
-      - name: Workaround termux-am Android SDK permission issue in builder image
+      - name: Fix Android SDK permissions in the persistent build container (before build, outside package scripts)
         working-directory: termux-packages
         run: |
-          # The package-builder Docker image's Android SDK directory isn't
-          # writable by sdkmanager when it auto-installs missing components
-          # for termux-am's small Gradle sub-build ("Failed to read or create
-          # install properties file"). Fix permissions before gradle runs.
-          sed -i \
-            's/\texport ANDROID_HOME/\techo "CANARY: before ANDROID_HOME chown, path=$ANDROID_HOME"\n\tsudo chown -R $(id -u):$(id -g) "$ANDROID_HOME" || echo "CANARY: chown failed with code $?"\n\techo "CANARY: after ANDROID_HOME chown"\n\texport ANDROID_HOME/' \
-            packages/termux-am/build.sh
-          grep -n -A3 -B1 "CANARY" packages/termux-am/build.sh
+          set -o pipefail
+          # termux-packages forbids 'sudo' inside package build.sh scripts
+          # (guarded, causes a hard error). The Android SDK dir bundled in
+          # the builder image isn't writable by the "builder" user though,
+          # which breaks termux-am's Gradle sub-build when it auto-installs
+          # missing SDK components ("Failed to read or create install
+          # properties file"). Fix this the same way run-docker.sh itself
+          # already fixes ownership of $HOME/data: a plain docker exec,
+          # run here before the actual build, against the same persistent
+          # named container that build-bootstraps.sh will reuse afterwards.
+          TERMUX_DOCKER_RUN_EXTRA_ARGS="--volume $HOME/.config/termux/termuxrc.sh:/home/builder/.config/termux/termuxrc.sh --env MAKEFLAGS=-j2" \
+            ./scripts/run-docker.sh bash -c 'echo "ANDROID_HOME=$ANDROID_HOME"; sudo chown -R $(id -u):$(id -g) "$ANDROID_HOME" && echo "chown OK" || echo "chown FAILED with code $?"'
 
       - name: Build bootstrap for ${{ matrix.arch }}
         working-directory: termux-packages
