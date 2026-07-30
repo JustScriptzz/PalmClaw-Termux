@@ -56,28 +56,28 @@ jobs:
             scripts/build/termux_download.sh
           grep -n "insecure" scripts/build/termux_download.sh
 
+      - name: Fix termux-am's Android SDK to a writable, self-owned directory
+        working-directory: termux-packages
+        run: |
+          # The Docker builder image's default Android SDK directory isn't
+          # writable by the "builder" user (auto-install of missing SDK
+          # components fails with "Failed to read or create install
+          # properties file"). Rather than fighting sudo/permissions on a
+          # pre-baked path (sudo is also forbidden inside package build.sh
+          # scripts by termux-packages' own guard), just redirect this one
+          # package to use a brand-new directory under $HOME that we create
+          # ourselves, so ownership is correct from the start.
+          sed -i \
+            's/\texport ANDROID_HOME/\tmkdir -p "$HOME\/palmclaw-android-sdk"\n\texport ANDROID_HOME="$HOME\/palmclaw-android-sdk"/' \
+            packages/termux-am/build.sh
+          grep -n -A2 -B1 "palmclaw-android-sdk" packages/termux-am/build.sh
+
       - name: Build bootstrap for ${{ matrix.arch }}
         working-directory: termux-packages
         run: |
           set -o pipefail
-          {
-            echo "=== Fixing Android SDK permissions before build ==="
-            TERMUX_DOCKER_RUN_EXTRA_ARGS="--volume $HOME/.config/termux/termuxrc.sh:/home/builder/.config/termux/termuxrc.sh --env MAKEFLAGS=-j2" \
-              ./scripts/run-docker.sh bash -c '
-                echo "ANDROID_HOME=$ANDROID_HOME"
-                echo "--- ls -la $ANDROID_HOME (before) ---"
-                ls -la "$ANDROID_HOME" 2>&1 || echo "(does not exist yet)"
-                echo "--- ls -la $(dirname "$ANDROID_HOME") (before) ---"
-                ls -la "$(dirname "$ANDROID_HOME")" 2>&1
-                echo "--- chown parent dir recursively ---"
-                sudo chown -R $(id -u):$(id -g) "$(dirname "$ANDROID_HOME")" && echo "chown OK" || echo "chown FAILED with code $?"
-                echo "--- ls -la $(dirname "$ANDROID_HOME") (after) ---"
-                ls -la "$(dirname "$ANDROID_HOME")" 2>&1
-              '
-            echo "=== Starting bootstrap build ==="
-          } 2>&1 | tee "$RUNNER_TEMP/bootstrap-build-${{ matrix.arch }}.log"
           TERMUX_DOCKER_RUN_EXTRA_ARGS="--volume $HOME/.config/termux/termuxrc.sh:/home/builder/.config/termux/termuxrc.sh --env MAKEFLAGS=-j2" \
-            ./scripts/run-docker.sh ./scripts/build-bootstraps.sh --architectures ${{ matrix.arch }} 2>&1 | tee -a "$RUNNER_TEMP/bootstrap-build-${{ matrix.arch }}.log"
+            ./scripts/run-docker.sh ./scripts/build-bootstraps.sh --architectures ${{ matrix.arch }} 2>&1 | tee "$RUNNER_TEMP/bootstrap-build-${{ matrix.arch }}.log"
 
       - name: Locate produced bootstrap zip
         working-directory: termux-packages
