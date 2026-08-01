@@ -43,9 +43,10 @@ jobs:
           TERMUX_APP__PACKAGE_NAME="com.palmclaw.termux"
           EOF
 
-      - name: Workaround xorg.freedesktop.org TLS cert issue (SHA-256 checksum still enforced)
+      - name: Increase download resilience (TLS workaround + longer retry budget for flaky upstream mirrors)
         working-directory: termux-packages
         run: |
+          set -o pipefail
           # xorg.freedesktop.org is currently serving a certificate that fails
           # validation (needed transitively for xorg-util-macros -> fontconfig).
           # Skip TLS verification only for that host; the downloaded file's
@@ -54,6 +55,15 @@ jobs:
           sed -i \
             's/--location           # Follow redirects/--location           # Follow redirects\n\t\t$( [[ "$URL" == *xorg.freedesktop.org* ]] \&\& echo --insecure )/' \
             scripts/build/termux_download.sh
+
+          # Some upstream mirrors (e.g. download.savannah.gnu.org) return
+          # transient 502s / timeouts. The default retry budget (2 outer
+          # attempts x 120s curl budget, ~5-6 min total) is too short to
+          # ride those out. Widen it; checksum verification is unaffected.
+          sed -i 's/--retry-max-time 120 # Stop retrying if it'"'"'s still failing after 120 seconds/--retry-max-time 180 # Stop retrying if it'"'"'s still failing after 180 seconds/' scripts/build/termux_download.sh
+          sed -i 's/local retry=2/local retry=6/' scripts/build/termux_download.sh
+          sed -i 's/local delay=60/local delay=45/' scripts/build/termux_download.sh
+          grep -n "insecure\|retry-max-time\|local retry=\|local delay=" scripts/build/termux_download.sh
           grep -n "insecure" scripts/build/termux_download.sh
 
       - name: Fix termux-am's Android SDK to a writable, self-owned directory
