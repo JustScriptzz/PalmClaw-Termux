@@ -82,6 +82,16 @@ jobs:
             packages/termux-am/build.sh
           grep -n -A5 -B1 "palmclaw-android-sdk" packages/termux-am/build.sh
 
+      - name: Patch build-bootstraps.sh (remove defunct standalone bzip2 package)
+        working-directory: termux-packages
+        run: |
+          # bzip2 was absorbed into libbz2 in termux-packages and no longer
+          # exists as a standalone package. build-bootstraps.sh still lists it,
+          # causing "No package bzip2 found" at bootstrap generation time.
+          # It's already pulled in transitively by apt, so safe to remove here.
+          sed -i '/PACKAGES+=("bzip2")/d' scripts/build-bootstraps.sh
+          grep -n "bzip2" scripts/build-bootstraps.sh || echo "bzip2 line removed OK"
+
       - name: Build bootstrap for ${{ matrix.arch }}
         working-directory: termux-packages
         run: |
