@@ -72,7 +72,7 @@ jobs:
           ls -lh "$RUNNER_TEMP/bootstrap-${{ matrix.arch }}.zip"
 
       - name: Upload bootstrap artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bootstrap-zip-${{ matrix.arch }}
           path: ${{ runner.temp }}/bootstrap-${{ matrix.arch }}.zip
@@ -156,7 +156,7 @@ jobs:
 
       - name: Upload APK artifact
         if: steps.build.outcome == 'success'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: palmclaw-terminal-debug
           path: app/build/outputs/apk/**/*.apk
