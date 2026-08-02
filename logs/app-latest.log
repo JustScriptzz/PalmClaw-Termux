@@ -1,0 +1,1344 @@
+Downloading https://services.gradle.org/distributions/gradle-9.2.1-bin.zip
+............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+
+Welcome to Gradle 9.2.1!
+
+Here are the highlights of this release:
+ - Windows ARM support
+ - Improved publishing APIs
+ - Better guidance for dependency verification failures
+
+For more details see https://docs.gradle.org/9.2.1/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.2.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+
+> Task :app:downloadBootstraps
+Using prebuilt custom bootstrap for PalmClaw Terminal (com.palmclaw.termux): src/main/cpp/bootstrap-aarch64.zip
+Using prebuilt custom bootstrap for PalmClaw Terminal (com.palmclaw.termux): src/main/cpp/bootstrap-arm.zip
+Using prebuilt custom bootstrap for PalmClaw Terminal (com.palmclaw.termux): src/main/cpp/bootstrap-i686.zip
+Using prebuilt custom bootstrap for PalmClaw Terminal (com.palmclaw.termux): src/main/cpp/bootstrap-x86_64.zip
+
+> Task :app:generateDebugBuildConfig
+> Task :terminal-emulator:preBuild UP-TO-DATE
+> Task :terminal-emulator:preDebugBuild UP-TO-DATE
+> Task :terminal-emulator:writeDebugAarMetadata
+> Task :app:javaPreCompileDebug
+> Task :terminal-view:preBuild UP-TO-DATE
+> Task :terminal-view:preDebugBuild UP-TO-DATE
+> Task :termux-shared:preBuild UP-TO-DATE
+> Task :termux-shared:preDebugBuild UP-TO-DATE
+> Task :terminal-view:writeDebugAarMetadata
+> Task :termux-shared:writeDebugAarMetadata
+> Task :terminal-emulator:processDebugNavigationResources
+> Task :terminal-view:processDebugNavigationResources
+> Task :app:checkDebugAarMetadata
+> Task :termux-shared:processDebugNavigationResources
+> Task :app:processDebugNavigationResources
+> Task :app:compileDebugNavigationResources
+> Task :app:generateDebugResValues
+> Task :terminal-emulator:generateDebugResValues
+> Task :terminal-emulator:generateDebugResources
+> Task :terminal-emulator:packageDebugResources
+> Task :terminal-view:generateDebugResValues
+> Task :terminal-view:generateDebugResources
+> Task :terminal-view:packageDebugResources
+> Task :termux-shared:generateDebugResValues
+> Task :termux-shared:generateDebugResources
+> Task :termux-shared:packageDebugResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :terminal-emulator:extractDeepLinksDebug
+> Task :terminal-view:extractDeepLinksDebug
+> Task :terminal-emulator:processDebugManifest
+> Task :terminal-view:processDebugManifest
+> Task :termux-shared:extractDeepLinksDebug
+> Task :termux-shared:processDebugManifest
+> Task :terminal-emulator:compileDebugLibraryResources
+> Task :app:parseDebugLocalResources
+> Task :app:processDebugMainManifest
+> Task :app:mergeDebugResources
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :terminal-view:compileDebugLibraryResources
+> Task :terminal-emulator:parseDebugLocalResources
+> Task :termux-shared:compileDebugLibraryResources
+> Task :terminal-view:parseDebugLocalResources
+> Task :terminal-emulator:javaPreCompileDebug
+> Task :terminal-view:javaPreCompileDebug
+> Task :termux-shared:parseDebugLocalResources
+> Task :terminal-view:generateDebugRFile
+> Task :termux-shared:javaPreCompileDebug
+> Task :terminal-emulator:generateDebugRFile
+> Task :termux-shared:generateDebugRFile
+
+> Task :terminal-emulator:compileDebugJavaWithJavac
+Note: /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/terminal-emulator/src/main/java/com/termux/terminal/TerminalSession.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :terminal-emulator:bundleLibCompileToJarDebug
+> Task :terminal-emulator:mergeDebugShaders
+
+> Task :terminal-view:compileDebugJavaWithJavac
+Note: /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/terminal-view/src/main/java/com/termux/view/TerminalView.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :terminal-emulator:compileDebugShaders NO-SOURCE
+> Task :terminal-emulator:generateDebugAssets UP-TO-DATE
+> Task :terminal-view:bundleLibCompileToJarDebug
+> Task :terminal-emulator:mergeDebugAssets
+> Task :app:processDebugResources
+
+> Task :termux-shared:compileDebugJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :terminal-view:mergeDebugShaders
+> Task :terminal-view:compileDebugShaders NO-SOURCE
+> Task :terminal-view:generateDebugAssets UP-TO-DATE
+> Task :terminal-view:mergeDebugAssets
+> Task :termux-shared:bundleLibCompileToJarDebug
+
+> Task :app:compileDebugJavaWithJavac FAILED
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:29: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:21: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:20: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:19: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:21: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:12: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:13: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxApplication.java:6: error: cannot find symbol
+import com.termux.BuildConfig;
+                 ^
+  symbol:   class BuildConfig
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxFloatPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_widget/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxAPIPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_tasker/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxWidgetPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxTaskerPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux/TerminalIOPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux/TerminalViewPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_float/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_api/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/activities/SettingsActivity.java:12: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/api/file/FileReceiverActivity.java:13: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/RunCommandService.java:12: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/filepicker/TermuxDocumentsProvider.java:14: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:216: error: package R does not exist
+        setContentView(R.layout.activity_termux);
+                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:229: error: package R does not exist
+        mTermuxActivityRootView = findViewById(R.id.activity_termux_root_view);
+                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:231: error: package R does not exist
+        mTermuxActivityBottomSpaceView = findViewById(R.id.activity_termux_bottom_space_view);
+                                                       ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:271: error: package R does not exist
+                    R.string.error_termux_service_start_failed_bg : R.string.error_termux_service_start_failed_general),
+                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:271: error: package R does not exist
+                    R.string.error_termux_service_start_failed_bg : R.string.error_termux_service_start_failed_general),
+                                                                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:465: error: package R does not exist
+        RelativeLayout relativeLayout = findViewById(R.id.activity_termux_root_relative_layout);
+                                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:490: error: package R does not exist
+        mTerminalView = findViewById(R.id.terminal_view);
+                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:501: error: package R does not exist
+        ListView termuxSessionsListView = findViewById(R.id.terminal_sessions_list);
+                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:546: error: package R does not exist
+        Logger.showToast(this, (showNow ? getString(R.string.msg_enabling_terminal_toolbar) : getString(R.string.msg_disabling_terminal_toolbar)), true);
+                                                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:546: error: package R does not exist
+        Logger.showToast(this, (showNow ? getString(R.string.msg_enabling_terminal_toolbar) : getString(R.string.msg_disabling_terminal_toolbar)), true);
+                                                                                                         ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:550: error: package R does not exist
+            findViewById(R.id.terminal_toolbar_text_input).requestFocus();
+                          ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:557: error: package R does not exist
+        final EditText textInputView = findViewById(R.id.terminal_toolbar_text_input);
+                                                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:567: error: package R does not exist
+        ImageButton settingsButton = findViewById(R.id.settings_button);
+                                                   ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:574: error: package R does not exist
+        View newSessionButton = findViewById(R.id.new_session_button);
+                                              ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:577: error: package R does not exist
+            TextInputDialogUtils.textInput(TermuxActivity.this, R.string.title_create_named_session, null,
+                                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:578: error: package R does not exist
+                R.string.action_create_named_session_confirm, text -> mTermuxTerminalSessionActivityClient.addNewSession(false, text),
+                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:579: error: package R does not exist
+                R.string.action_new_session_failsafe, text -> mTermuxTerminalSessionActivityClient.addNewSession(true, text),
+                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:586: error: package R does not exist
+        findViewById(R.id.toggle_keyboard_button).setOnClickListener(v -> {
+                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:591: error: package R does not exist
+        findViewById(R.id.toggle_keyboard_button).setOnLongClickListener(v -> {
+                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:636: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_SELECT_URL_ID, Menu.NONE, R.string.action_select_url);
+                                                                    ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:637: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_SHARE_TRANSCRIPT_ID, Menu.NONE, R.string.action_share_transcript);
+                                                                          ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:639: error: package R does not exist
+            menu.add(Menu.NONE, CONTEXT_MENU_SHARE_SELECTED_TEXT, Menu.NONE, R.string.action_share_selected_text);
+                                                                              ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:641: error: package R does not exist
+            menu.add(Menu.NONE, CONTEXT_MENU_AUTOFILL_USERNAME, Menu.NONE, R.string.action_autofill_username);
+                                                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:643: error: package R does not exist
+            menu.add(Menu.NONE, CONTEXT_MENU_AUTOFILL_PASSWORD, Menu.NONE, R.string.action_autofill_password);
+                                                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:644: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_RESET_TERMINAL_ID, Menu.NONE, R.string.action_reset_terminal);
+                                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:645: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_KILL_PROCESS_ID, Menu.NONE, getResources().getString(R.string.action_kill_process, getCurrentSession().getPid())).setEnabled(currentSession.isRunning());
+                                                                                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:646: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_STYLING_ID, Menu.NONE, R.string.action_style_terminal);
+                                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:647: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_TOGGLE_KEEP_SCREEN_ON, Menu.NONE, R.string.action_toggle_keep_screen_on).setCheckable(true).setChecked(mPreferences.shouldKeepScreenOn());
+                                                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:648: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_HELP_ID, Menu.NONE, R.string.action_open_help);
+                                                              ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:649: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_SETTINGS_ID, Menu.NONE, R.string.action_open_settings);
+                                                                  ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:650: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_REPORT_ID, Menu.NONE, R.string.action_report_issue);
+                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:718: error: package R does not exist
+        b.setMessage(R.string.title_confirm_kill_process);
+                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:730: error: package R does not exist
+            showToast(getResources().getString(R.string.msg_terminal_reset), true);
+                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:746: error: package R does not exist
+                .setPositiveButton(R.string.action_styling_install,
+                                    ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:745: error: package R does not exist
+            new AlertDialog.Builder(this).setMessage(getString(R.string.error_styling_not_installed))
+                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:837: error: package R does not exist
+        return (DrawerLayout) findViewById(R.id.drawer_layout);
+                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:842: error: package R does not exist
+        return (ViewPager) findViewById(R.id.terminal_toolbar_view_pager);
+                                         ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:374: error: package R does not exist
+            String errmsg = this.getString(R.string.error_termux_service_invalid_execution_command_runner, executionCommand.runner);
+                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:421: error: package R does not exist
+            String errmsg = getString(R.string.error_termux_service_unsupported_execution_command_runner, executionCommand.runner);
+                                       ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:671: error: package R does not exist
+                    getString(R.string.error_termux_service_execution_command_shell_name_unset, executionCommand.shellCreateMode));
+                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:678: error: package R does not exist
+                getString(R.string.error_termux_service_unsupported_execution_command_shell_create_mode, executionCommand.shellCreateMode));
+                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:726: error: package R does not exist
+                Logger.showToast(this, this.getString(R.string.error_display_over_other_apps_permission_not_granted_to_start_terminal), true);
+                                                       ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:819: error: package R does not exist
+        builder.setSmallIcon(R.drawable.ic_service_notification);
+                              ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:830: error: package R does not exist
+        builder.addAction(android.R.drawable.ic_delete, res.getString(R.string.notification_action_exit), PendingIntent.getService(this, 0, exitIntent, 0));
+                                                                       ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:836: error: package R does not exist
+        String actionTitle = res.getString(wakeLockHeld ? R.string.notification_action_wake_unlock : R.string.notification_action_wake_lock);
+                                                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:836: error: package R does not exist
+        String actionTitle = res.getString(wakeLockHeld ? R.string.notification_action_wake_unlock : R.string.notification_action_wake_lock);
+                                                                                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:618: error: package R does not exist
+                final EditText textInputView =  mActivity.findViewById(R.id.terminal_toolbar_text_input);
+                                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:683: error: package R does not exist
+        ShareUtils.shareText(mActivity, mActivity.getString(R.string.title_share_transcript),
+                                                             ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:684: error: package R does not exist
+            transcriptText, mActivity.getString(R.string.title_share_transcript_with));
+                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:690: error: package R does not exist
+        ShareUtils.shareText(mActivity, mActivity.getString(R.string.title_share_selected_text),
+                                                             ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:691: error: package R does not exist
+            selectedText, mActivity.getString(R.string.title_share_selected_text_with));
+                                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:702: error: package R does not exist
+            new AlertDialog.Builder(mActivity).setMessage(R.string.title_select_url_none_found).show();
+                                                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:713: error: package R does not exist
+        }).setTitle(R.string.title_select_url_dialog).create();
+                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:712: error: package R does not exist
+            ShareUtils.copyTextToClipboard(mActivity, url, mActivity.getString(R.string.msg_select_url_copied_to_clipboard));
+                                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:737: error: package R does not exist
+            mActivity.getString(R.string.msg_add_termux_debug_info),
+                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:744: error: package R does not exist
+        Logger.showToast(mActivity, mActivity.getString(R.string.msg_generating_report), true);
+                                                         ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:347: error: package R does not exist
+        TextInputDialogUtils.textInput(mActivity, R.string.title_rename_session, sessionToRename.mSessionName, R.string.action_rename_session_confirm, text -> {
+                                                   ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:347: error: package R does not exist
+        TextInputDialogUtils.textInput(mActivity, R.string.title_rename_session, sessionToRename.mSessionName, R.string.action_rename_session_confirm, text -> {
+                                                                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:369: error: package R does not exist
+            new AlertDialog.Builder(mActivity).setTitle(R.string.title_max_terminals_reached).setMessage(R.string.msg_max_terminals_reached)
+                                                                                                          ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:369: error: package R does not exist
+            new AlertDialog.Builder(mActivity).setTitle(R.string.title_max_terminals_reached).setMessage(R.string.msg_max_terminals_reached)
+                                                         ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:465: error: package R does not exist
+        final ListView termuxSessionsListView = mActivity.findViewById(R.id.terminal_sessions_list);
+                                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:38: error: package R does not exist
+        super(activity.getApplicationContext(), R.layout.item_terminal_sessions_list, sessionList);
+                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:49: error: package R does not exist
+            sessionRowView = inflater.inflate(R.layout.item_terminal_sessions_list, parent, false);
+                                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:52: error: package R does not exist
+        TextView sessionTitleView = sessionRowView.findViewById(R.id.session_title);
+                                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:64: error: package R does not exist
+                ContextCompat.getDrawable(mActivity, R.drawable.session_background_black_selected)
+                                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:45: error: package R does not exist
+                layout = inflater.inflate(R.layout.view_terminal_toolbar_extra_keys, collection, false);
+                                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:59: error: package R does not exist
+                layout = inflater.inflate(R.layout.view_terminal_toolbar_text_input, collection, false);
+                                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:60: error: package R does not exist
+                final EditText editText = layout.findViewById(R.id.terminal_toolbar_text_input);
+                                                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:110: error: package R does not exist
+                final EditText editText = mTerminalToolbarViewPager.findViewById(R.id.terminal_toolbar_text_input);
+                                                                                  ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:77: error: package R does not exist
+            bootstrapErrorMessage = activity.getString(R.string.bootstrap_error_not_primary_user_message,
+                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:83: error: package R does not exist
+                activity.getString(R.string.bootstrap_error_title),
+                                    ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:93: error: package R does not exist
+                bootstrapErrorMessage += "\n\n" + activity.getString(R.string.bootstrap_error_installed_on_portable_sd,
+                                                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:100: error: package R does not exist
+                activity.getString(R.string.bootstrap_error_title),
+                                    ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:117: error: package R does not exist
+        final ProgressDialog progress = ProgressDialog.show(activity, null, activity.getString(R.string.bootstrap_installer_body), true, false);
+                                                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:255: error: package R does not exist
+                    .setPositiveButton(R.string.bootstrap_error_try_again, (dialog, which) -> {
+                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:251: error: package R does not exist
+                    .setNegativeButton(R.string.bootstrap_error_abort, (dialog, which) -> {
+                                        ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+100 errors
+
+[Incubating] Problems report is available at: file:///home/runner/work/PalmClaw-Termux/PalmClaw-Termux/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugJavaWithJavac'.
+> Compilation failed; see the compiler output below.
+  Note: Recompile with -Xlint:deprecation for details.
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:29: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:21: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:20: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:19: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:21: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:12: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:13: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxApplication.java:6: error: cannot find symbol
+  import com.termux.BuildConfig;
+                   ^
+    symbol:   class BuildConfig
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxFloatPreferencesFragment.java:11: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_widget/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxAPIPreferencesFragment.java:11: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_tasker/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxWidgetPreferencesFragment.java:11: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxTaskerPreferencesFragment.java:11: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux/TerminalIOPreferencesFragment.java:11: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux/TerminalViewPreferencesFragment.java:11: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_float/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_api/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxPreferencesFragment.java:11: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/activities/SettingsActivity.java:12: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/api/file/FileReceiverActivity.java:13: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/RunCommandService.java:12: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/filepicker/TermuxDocumentsProvider.java:14: error: cannot find symbol
+  import com.termux.R;
+                   ^
+    symbol:   class R
+    location: package com.termux
+  Note: Some input files use or override a deprecated API.
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:216: error: package R does not exist
+          setContentView(R.layout.activity_termux);
+                          ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:229: error: package R does not exist
+          mTermuxActivityRootView = findViewById(R.id.activity_termux_root_view);
+                                                  ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:231: error: package R does not exist
+          mTermuxActivityBottomSpaceView = findViewById(R.id.activity_termux_bottom_space_view);
+                                                         ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:271: error: package R does not exist
+                      R.string.error_termux_service_start_failed_bg : R.string.error_termux_service_start_failed_general),
+                       ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:271: error: package R does not exist
+                      R.string.error_termux_service_start_failed_bg : R.string.error_termux_service_start_failed_general),
+                                                                       ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:465: error: package R does not exist
+          RelativeLayout relativeLayout = findViewById(R.id.activity_termux_root_relative_layout);
+                                                        ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:490: error: package R does not exist
+          mTerminalView = findViewById(R.id.terminal_view);
+                                        ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:501: error: package R does not exist
+          ListView termuxSessionsListView = findViewById(R.id.terminal_sessions_list);
+                                                          ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:546: error: package R does not exist
+          Logger.showToast(this, (showNow ? getString(R.string.msg_enabling_terminal_toolbar) : getString(R.string.msg_disabling_terminal_toolbar)), true);
+                                                       ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:546: error: package R does not exist
+          Logger.showToast(this, (showNow ? getString(R.string.msg_enabling_terminal_toolbar) : getString(R.string.msg_disabling_terminal_toolbar)), true);
+                                                                                                           ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:550: error: package R does not exist
+              findViewById(R.id.terminal_toolbar_text_input).requestFocus();
+                            ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:557: error: package R does not exist
+          final EditText textInputView = findViewById(R.id.terminal_toolbar_text_input);
+                                                       ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:567: error: package R does not exist
+          ImageButton settingsButton = findViewById(R.id.settings_button);
+                                                     ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:574: error: package R does not exist
+          View newSessionButton = findViewById(R.id.new_session_button);
+                                                ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:577: error: package R does not exist
+              TextInputDialogUtils.textInput(TermuxActivity.this, R.string.title_create_named_session, null,
+                                                                   ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:578: error: package R does not exist
+                  R.string.action_create_named_session_confirm, text -> mTermuxTerminalSessionActivityClient.addNewSession(false, text),
+                   ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:579: error: package R does not exist
+                  R.string.action_new_session_failsafe, text -> mTermuxTerminalSessionActivityClient.addNewSession(true, text),
+                   ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:586: error: package R does not exist
+          findViewById(R.id.toggle_keyboard_button).setOnClickListener(v -> {
+                        ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:591: error: package R does not exist
+          findViewById(R.id.toggle_keyboard_button).setOnLongClickListener(v -> {
+                        ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:636: error: package R does not exist
+          menu.add(Menu.NONE, CONTEXT_MENU_SELECT_URL_ID, Menu.NONE, R.string.action_select_url);
+                                                                      ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:637: error: package R does not exist
+          menu.add(Menu.NONE, CONTEXT_MENU_SHARE_TRANSCRIPT_ID, Menu.NONE, R.string.action_share_transcript);
+                                                                            ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:639: error: package R does not exist
+              menu.add(Menu.NONE, CONTEXT_MENU_SHARE_SELECTED_TEXT, Menu.NONE, R.string.action_share_selected_text);
+                                                                                ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:641: error: package R does not exist
+              menu.add(Menu.NONE, CONTEXT_MENU_AUTOFILL_USERNAME, Menu.NONE, R.string.action_autofill_username);
+                                                                              ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:643: error: package R does not exist
+              menu.add(Menu.NONE, CONTEXT_MENU_AUTOFILL_PASSWORD, Menu.NONE, R.string.action_autofill_password);
+                                                                              ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:644: error: package R does not exist
+          menu.add(Menu.NONE, CONTEXT_MENU_RESET_TERMINAL_ID, Menu.NONE, R.string.action_reset_terminal);
+                                                                          ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:645: error: package R does not exist
+          menu.add(Menu.NONE, CONTEXT_MENU_KILL_PROCESS_ID, Menu.NONE, getResources().getString(R.string.action_kill_process, getCurrentSession().getPid())).setEnabled(currentSession.isRunning());
+                                                                                                 ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:646: error: package R does not exist
+          menu.add(Menu.NONE, CONTEXT_MENU_STYLING_ID, Menu.NONE, R.string.action_style_terminal);
+                                                                   ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:647: error: package R does not exist
+          menu.add(Menu.NONE, CONTEXT_MENU_TOGGLE_KEEP_SCREEN_ON, Menu.NONE, R.string.action_toggle_keep_screen_on).setCheckable(true).setChecked(mPreferences.shouldKeepScreenOn());
+                                                                              ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:648: error: package R does not exist
+          menu.add(Menu.NONE, CONTEXT_MENU_HELP_ID, Menu.NONE, R.string.action_open_help);
+                                                                ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:649: error: package R does not exist
+          menu.add(Menu.NONE, CONTEXT_MENU_SETTINGS_ID, Menu.NONE, R.string.action_open_settings);
+                                                                    ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:650: error: package R does not exist
+          menu.add(Menu.NONE, CONTEXT_MENU_REPORT_ID, Menu.NONE, R.string.action_report_issue);
+                                                                  ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:718: error: package R does not exist
+          b.setMessage(R.string.title_confirm_kill_process);
+                        ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:730: error: package R does not exist
+              showToast(getResources().getString(R.string.msg_terminal_reset), true);
+                                                  ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:746: error: package R does not exist
+                  .setPositiveButton(R.string.action_styling_install,
+                                      ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:745: error: package R does not exist
+              new AlertDialog.Builder(this).setMessage(getString(R.string.error_styling_not_installed))
+                                                                  ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:837: error: package R does not exist
+          return (DrawerLayout) findViewById(R.id.drawer_layout);
+                                              ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:842: error: package R does not exist
+          return (ViewPager) findViewById(R.id.terminal_toolbar_view_pager);
+                                           ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:374: error: package R does not exist
+              String errmsg = this.getString(R.string.error_termux_service_invalid_execution_command_runner, executionCommand.runner);
+                                              ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:421: error: package R does not exist
+              String errmsg = getString(R.string.error_termux_service_unsupported_execution_command_runner, executionCommand.runner);
+                                         ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:671: error: package R does not exist
+                      getString(R.string.error_termux_service_execution_command_shell_name_unset, executionCommand.shellCreateMode));
+                                 ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:678: error: package R does not exist
+                  getString(R.string.error_termux_service_unsupported_execution_command_shell_create_mode, executionCommand.shellCreateMode));
+                             ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:726: error: package R does not exist
+                  Logger.showToast(this, this.getString(R.string.error_display_over_other_apps_permission_not_granted_to_start_terminal), true);
+                                                         ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:819: error: package R does not exist
+          builder.setSmallIcon(R.drawable.ic_service_notification);
+                                ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:830: error: package R does not exist
+          builder.addAction(android.R.drawable.ic_delete, res.getString(R.string.notification_action_exit), PendingIntent.getService(this, 0, exitIntent, 0));
+                                                                         ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:836: error: package R does not exist
+          String actionTitle = res.getString(wakeLockHeld ? R.string.notification_action_wake_unlock : R.string.notification_action_wake_lock);
+                                                             ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:836: error: package R does not exist
+          String actionTitle = res.getString(wakeLockHeld ? R.string.notification_action_wake_unlock : R.string.notification_action_wake_lock);
+                                                                                                        ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:618: error: package R does not exist
+                  final EditText textInputView =  mActivity.findViewById(R.id.terminal_toolbar_text_input);
+                                                                          ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:683: error: package R does not exist
+          ShareUtils.shareText(mActivity, mActivity.getString(R.string.title_share_transcript),
+                                                               ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:684: error: package R does not exist
+              transcriptText, mActivity.getString(R.string.title_share_transcript_with));
+                                                   ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:690: error: package R does not exist
+          ShareUtils.shareText(mActivity, mActivity.getString(R.string.title_share_selected_text),
+                                                               ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:691: error: package R does not exist
+              selectedText, mActivity.getString(R.string.title_share_selected_text_with));
+                                                 ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:702: error: package R does not exist
+              new AlertDialog.Builder(mActivity).setMessage(R.string.title_select_url_none_found).show();
+                                                             ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:713: error: package R does not exist
+          }).setTitle(R.string.title_select_url_dialog).create();
+                       ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:712: error: package R does not exist
+              ShareUtils.copyTextToClipboard(mActivity, url, mActivity.getString(R.string.msg_select_url_copied_to_clipboard));
+                                                                                  ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:737: error: package R does not exist
+              mActivity.getString(R.string.msg_add_termux_debug_info),
+                                   ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:744: error: package R does not exist
+          Logger.showToast(mActivity, mActivity.getString(R.string.msg_generating_report), true);
+                                                           ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:347: error: package R does not exist
+          TextInputDialogUtils.textInput(mActivity, R.string.title_rename_session, sessionToRename.mSessionName, R.string.action_rename_session_confirm, text -> {
+                                                     ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:347: error: package R does not exist
+          TextInputDialogUtils.textInput(mActivity, R.string.title_rename_session, sessionToRename.mSessionName, R.string.action_rename_session_confirm, text -> {
+                                                                                                                  ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:369: error: package R does not exist
+              new AlertDialog.Builder(mActivity).setTitle(R.string.title_max_terminals_reached).setMessage(R.string.msg_max_terminals_reached)
+                                                                                                            ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:369: error: package R does not exist
+              new AlertDialog.Builder(mActivity).setTitle(R.string.title_max_terminals_reached).setMessage(R.string.msg_max_terminals_reached)
+                                                           ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:465: error: package R does not exist
+          final ListView termuxSessionsListView = mActivity.findViewById(R.id.terminal_sessions_list);
+                                                                          ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:38: error: package R does not exist
+          super(activity.getApplicationContext(), R.layout.item_terminal_sessions_list, sessionList);
+                                                   ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:49: error: package R does not exist
+              sessionRowView = inflater.inflate(R.layout.item_terminal_sessions_list, parent, false);
+                                                 ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:52: error: package R does not exist
+          TextView sessionTitleView = sessionRowView.findViewById(R.id.session_title);
+                                                                   ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:64: error: package R does not exist
+                  ContextCompat.getDrawable(mActivity, R.drawable.session_background_black_selected)
+                                                        ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:45: error: package R does not exist
+                  layout = inflater.inflate(R.layout.view_terminal_toolbar_extra_keys, collection, false);
+                                             ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:59: error: package R does not exist
+                  layout = inflater.inflate(R.layout.view_terminal_toolbar_text_input, collection, false);
+                                             ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:60: error: package R does not exist
+                  final EditText editText = layout.findViewById(R.id.terminal_toolbar_text_input);
+                                                                 ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:110: error: package R does not exist
+                  final EditText editText = mTerminalToolbarViewPager.findViewById(R.id.terminal_toolbar_text_input);
+                                                                                    ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:77: error: package R does not exist
+              bootstrapErrorMessage = activity.getString(R.string.bootstrap_error_not_primary_user_message,
+                                                          ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:83: error: package R does not exist
+                  activity.getString(R.string.bootstrap_error_title),
+                                      ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:93: error: package R does not exist
+                  bootstrapErrorMessage += "\n\n" + activity.getString(R.string.bootstrap_error_installed_on_portable_sd,
+                                                                        ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:100: error: package R does not exist
+                  activity.getString(R.string.bootstrap_error_title),
+                                      ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:117: error: package R does not exist
+          final ProgressDialog progress = ProgressDialog.show(activity, null, activity.getString(R.string.bootstrap_installer_body), true, false);
+                                                                                                  ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:255: error: package R does not exist
+                      .setPositiveButton(R.string.bootstrap_error_try_again, (dialog, which) -> {
+                                          ^
+  /home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:251: error: package R does not exist
+                      .setNegativeButton(R.string.bootstrap_error_abort, (dialog, which) -> {
+                                          ^
+  100 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugJavaWithJavac'.
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:135)
+	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:288)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:133)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:121)
+	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:41)
+	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+	at org.gradle.execution.plan.DefaultNodeExecutor.executeLocalTaskNode(DefaultNodeExecutor.java:55)
+	at org.gradle.execution.plan.DefaultNodeExecutor.execute(DefaultNodeExecutor.java:34)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:355)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:343)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:339)
+	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:339)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler output below.
+Note: Recompile with -Xlint:deprecation for details.
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:29: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:21: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:20: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:19: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:21: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:12: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:13: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxApplication.java:6: error: cannot find symbol
+import com.termux.BuildConfig;
+                 ^
+  symbol:   class BuildConfig
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxFloatPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_widget/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxAPIPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_tasker/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxWidgetPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxTaskerPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux/TerminalIOPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux/TerminalViewPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_float/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/termux_api/DebuggingPreferencesFragment.java:15: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/fragments/settings/TermuxPreferencesFragment.java:11: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/activities/SettingsActivity.java:12: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/api/file/FileReceiverActivity.java:13: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/RunCommandService.java:12: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/filepicker/TermuxDocumentsProvider.java:14: error: cannot find symbol
+import com.termux.R;
+                 ^
+  symbol:   class R
+  location: package com.termux
+Note: Some input files use or override a deprecated API.
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:216: error: package R does not exist
+        setContentView(R.layout.activity_termux);
+                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:229: error: package R does not exist
+        mTermuxActivityRootView = findViewById(R.id.activity_termux_root_view);
+                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:231: error: package R does not exist
+        mTermuxActivityBottomSpaceView = findViewById(R.id.activity_termux_bottom_space_view);
+                                                       ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:271: error: package R does not exist
+                    R.string.error_termux_service_start_failed_bg : R.string.error_termux_service_start_failed_general),
+                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:271: error: package R does not exist
+                    R.string.error_termux_service_start_failed_bg : R.string.error_termux_service_start_failed_general),
+                                                                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:465: error: package R does not exist
+        RelativeLayout relativeLayout = findViewById(R.id.activity_termux_root_relative_layout);
+                                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:490: error: package R does not exist
+        mTerminalView = findViewById(R.id.terminal_view);
+                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:501: error: package R does not exist
+        ListView termuxSessionsListView = findViewById(R.id.terminal_sessions_list);
+                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:546: error: package R does not exist
+        Logger.showToast(this, (showNow ? getString(R.string.msg_enabling_terminal_toolbar) : getString(R.string.msg_disabling_terminal_toolbar)), true);
+                                                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:546: error: package R does not exist
+        Logger.showToast(this, (showNow ? getString(R.string.msg_enabling_terminal_toolbar) : getString(R.string.msg_disabling_terminal_toolbar)), true);
+                                                                                                         ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:550: error: package R does not exist
+            findViewById(R.id.terminal_toolbar_text_input).requestFocus();
+                          ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:557: error: package R does not exist
+        final EditText textInputView = findViewById(R.id.terminal_toolbar_text_input);
+                                                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:567: error: package R does not exist
+        ImageButton settingsButton = findViewById(R.id.settings_button);
+                                                   ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:574: error: package R does not exist
+        View newSessionButton = findViewById(R.id.new_session_button);
+                                              ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:577: error: package R does not exist
+            TextInputDialogUtils.textInput(TermuxActivity.this, R.string.title_create_named_session, null,
+                                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:578: error: package R does not exist
+                R.string.action_create_named_session_confirm, text -> mTermuxTerminalSessionActivityClient.addNewSession(false, text),
+                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:579: error: package R does not exist
+                R.string.action_new_session_failsafe, text -> mTermuxTerminalSessionActivityClient.addNewSession(true, text),
+                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:586: error: package R does not exist
+        findViewById(R.id.toggle_keyboard_button).setOnClickListener(v -> {
+                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:591: error: package R does not exist
+        findViewById(R.id.toggle_keyboard_button).setOnLongClickListener(v -> {
+                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:636: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_SELECT_URL_ID, Menu.NONE, R.string.action_select_url);
+                                                                    ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:637: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_SHARE_TRANSCRIPT_ID, Menu.NONE, R.string.action_share_transcript);
+                                                                          ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:639: error: package R does not exist
+            menu.add(Menu.NONE, CONTEXT_MENU_SHARE_SELECTED_TEXT, Menu.NONE, R.string.action_share_selected_text);
+                                                                              ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:641: error: package R does not exist
+            menu.add(Menu.NONE, CONTEXT_MENU_AUTOFILL_USERNAME, Menu.NONE, R.string.action_autofill_username);
+                                                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:643: error: package R does not exist
+            menu.add(Menu.NONE, CONTEXT_MENU_AUTOFILL_PASSWORD, Menu.NONE, R.string.action_autofill_password);
+                                                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:644: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_RESET_TERMINAL_ID, Menu.NONE, R.string.action_reset_terminal);
+                                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:645: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_KILL_PROCESS_ID, Menu.NONE, getResources().getString(R.string.action_kill_process, getCurrentSession().getPid())).setEnabled(currentSession.isRunning());
+                                                                                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:646: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_STYLING_ID, Menu.NONE, R.string.action_style_terminal);
+                                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:647: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_TOGGLE_KEEP_SCREEN_ON, Menu.NONE, R.string.action_toggle_keep_screen_on).setCheckable(true).setChecked(mPreferences.shouldKeepScreenOn());
+                                                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:648: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_HELP_ID, Menu.NONE, R.string.action_open_help);
+                                                              ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:649: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_SETTINGS_ID, Menu.NONE, R.string.action_open_settings);
+                                                                  ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:650: error: package R does not exist
+        menu.add(Menu.NONE, CONTEXT_MENU_REPORT_ID, Menu.NONE, R.string.action_report_issue);
+                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:718: error: package R does not exist
+        b.setMessage(R.string.title_confirm_kill_process);
+                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:730: error: package R does not exist
+            showToast(getResources().getString(R.string.msg_terminal_reset), true);
+                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:746: error: package R does not exist
+                .setPositiveButton(R.string.action_styling_install,
+                                    ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:745: error: package R does not exist
+            new AlertDialog.Builder(this).setMessage(getString(R.string.error_styling_not_installed))
+                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:837: error: package R does not exist
+        return (DrawerLayout) findViewById(R.id.drawer_layout);
+                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxActivity.java:842: error: package R does not exist
+        return (ViewPager) findViewById(R.id.terminal_toolbar_view_pager);
+                                         ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:374: error: package R does not exist
+            String errmsg = this.getString(R.string.error_termux_service_invalid_execution_command_runner, executionCommand.runner);
+                                            ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:421: error: package R does not exist
+            String errmsg = getString(R.string.error_termux_service_unsupported_execution_command_runner, executionCommand.runner);
+                                       ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:671: error: package R does not exist
+                    getString(R.string.error_termux_service_execution_command_shell_name_unset, executionCommand.shellCreateMode));
+                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:678: error: package R does not exist
+                getString(R.string.error_termux_service_unsupported_execution_command_shell_create_mode, executionCommand.shellCreateMode));
+                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:726: error: package R does not exist
+                Logger.showToast(this, this.getString(R.string.error_display_over_other_apps_permission_not_granted_to_start_terminal), true);
+                                                       ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:819: error: package R does not exist
+        builder.setSmallIcon(R.drawable.ic_service_notification);
+                              ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:830: error: package R does not exist
+        builder.addAction(android.R.drawable.ic_delete, res.getString(R.string.notification_action_exit), PendingIntent.getService(this, 0, exitIntent, 0));
+                                                                       ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:836: error: package R does not exist
+        String actionTitle = res.getString(wakeLockHeld ? R.string.notification_action_wake_unlock : R.string.notification_action_wake_lock);
+                                                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxService.java:836: error: package R does not exist
+        String actionTitle = res.getString(wakeLockHeld ? R.string.notification_action_wake_unlock : R.string.notification_action_wake_lock);
+                                                                                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:618: error: package R does not exist
+                final EditText textInputView =  mActivity.findViewById(R.id.terminal_toolbar_text_input);
+                                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:683: error: package R does not exist
+        ShareUtils.shareText(mActivity, mActivity.getString(R.string.title_share_transcript),
+                                                             ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:684: error: package R does not exist
+            transcriptText, mActivity.getString(R.string.title_share_transcript_with));
+                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:690: error: package R does not exist
+        ShareUtils.shareText(mActivity, mActivity.getString(R.string.title_share_selected_text),
+                                                             ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:691: error: package R does not exist
+            selectedText, mActivity.getString(R.string.title_share_selected_text_with));
+                                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:702: error: package R does not exist
+            new AlertDialog.Builder(mActivity).setMessage(R.string.title_select_url_none_found).show();
+                                                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:713: error: package R does not exist
+        }).setTitle(R.string.title_select_url_dialog).create();
+                     ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:712: error: package R does not exist
+            ShareUtils.copyTextToClipboard(mActivity, url, mActivity.getString(R.string.msg_select_url_copied_to_clipboard));
+                                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:737: error: package R does not exist
+            mActivity.getString(R.string.msg_add_termux_debug_info),
+                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalViewClient.java:744: error: package R does not exist
+        Logger.showToast(mActivity, mActivity.getString(R.string.msg_generating_report), true);
+                                                         ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:347: error: package R does not exist
+        TextInputDialogUtils.textInput(mActivity, R.string.title_rename_session, sessionToRename.mSessionName, R.string.action_rename_session_confirm, text -> {
+                                                   ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:347: error: package R does not exist
+        TextInputDialogUtils.textInput(mActivity, R.string.title_rename_session, sessionToRename.mSessionName, R.string.action_rename_session_confirm, text -> {
+                                                                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:369: error: package R does not exist
+            new AlertDialog.Builder(mActivity).setTitle(R.string.title_max_terminals_reached).setMessage(R.string.msg_max_terminals_reached)
+                                                                                                          ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:369: error: package R does not exist
+            new AlertDialog.Builder(mActivity).setTitle(R.string.title_max_terminals_reached).setMessage(R.string.msg_max_terminals_reached)
+                                                         ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxTerminalSessionActivityClient.java:465: error: package R does not exist
+        final ListView termuxSessionsListView = mActivity.findViewById(R.id.terminal_sessions_list);
+                                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:38: error: package R does not exist
+        super(activity.getApplicationContext(), R.layout.item_terminal_sessions_list, sessionList);
+                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:49: error: package R does not exist
+            sessionRowView = inflater.inflate(R.layout.item_terminal_sessions_list, parent, false);
+                                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:52: error: package R does not exist
+        TextView sessionTitleView = sessionRowView.findViewById(R.id.session_title);
+                                                                 ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/TermuxSessionsListViewController.java:64: error: package R does not exist
+                ContextCompat.getDrawable(mActivity, R.drawable.session_background_black_selected)
+                                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:45: error: package R does not exist
+                layout = inflater.inflate(R.layout.view_terminal_toolbar_extra_keys, collection, false);
+                                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:59: error: package R does not exist
+                layout = inflater.inflate(R.layout.view_terminal_toolbar_text_input, collection, false);
+                                           ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:60: error: package R does not exist
+                final EditText editText = layout.findViewById(R.id.terminal_toolbar_text_input);
+                                                               ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/terminal/io/TerminalToolbarViewPager.java:110: error: package R does not exist
+                final EditText editText = mTerminalToolbarViewPager.findViewById(R.id.terminal_toolbar_text_input);
+                                                                                  ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:77: error: package R does not exist
+            bootstrapErrorMessage = activity.getString(R.string.bootstrap_error_not_primary_user_message,
+                                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:83: error: package R does not exist
+                activity.getString(R.string.bootstrap_error_title),
+                                    ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:93: error: package R does not exist
+                bootstrapErrorMessage += "\n\n" + activity.getString(R.string.bootstrap_error_installed_on_portable_sd,
+                                                                      ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:100: error: package R does not exist
+                activity.getString(R.string.bootstrap_error_title),
+                                    ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:117: error: package R does not exist
+        final ProgressDialog progress = ProgressDialog.show(activity, null, activity.getString(R.string.bootstrap_installer_body), true, false);
+                                                                                                ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:255: error: package R does not exist
+                    .setPositiveButton(R.string.bootstrap_error_try_again, (dialog, which) -> {
+                                        ^
+/home/runner/work/PalmClaw-Termux/PalmClaw-Termux/app/src/main/java/com/termux/app/TermuxInstaller.java:251: error: package R does not exist
+                    .setNegativeButton(R.string.bootstrap_error_abort, (dialog, which) -> {
+                                        ^
+100 errors
+	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:89)
+	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:50)
+	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.delegateAndHandleErrors(NormalizingJavaCompiler.java:98)
+	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.execute(NormalizingJavaCompiler.java:52)
+	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.execute(NormalizingJavaCompiler.java:38)
+	at org.gradle.api.internal.tasks.compile.AnnotationProcessorDiscoveringCompiler.execute(AnnotationProcessorDiscoveringCompiler.java:52)
+	at org.gradle.api.internal.tasks.compile.AnnotationProcessorDiscoveringCompiler.execute(AnnotationProcessorDiscoveringCompiler.java:38)
+	at org.gradle.api.internal.tasks.compile.ModuleApplicationNameWritingCompiler.execute(ModuleApplicationNameWritingCompiler.java:46)
+	at org.gradle.api.internal.tasks.compile.ModuleApplicationNameWritingCompiler.execute(ModuleApplicationNameWritingCompiler.java:36)
+	at org.gradle.jvm.toolchain.internal.DefaultToolchainJavaCompiler.execute(DefaultToolchainJavaCompiler.java:57)
+	at org.gradle.api.tasks.compile.JavaCompile.lambda$createToolchainCompiler$3(JavaCompile.java:206)
+	at org.gradle.api.internal.tasks.compile.CleaningJavaCompiler.execute(CleaningJavaCompiler.java:53)
+	at org.gradle.api.internal.tasks.compile.incremental.IncrementalCompilerFactory.lambda$createRebuildAllCompiler$0(IncrementalCompilerFactory.java:55)
+	at org.gradle.api.internal.tasks.compile.incremental.SelectiveCompiler.execute(SelectiveCompiler.java:70)
+	at org.gradle.api.internal.tasks.compile.incremental.SelectiveCompiler.execute(SelectiveCompiler.java:44)
+	at org.gradle.api.internal.tasks.compile.incremental.IncrementalResultStoringCompiler.execute(IncrementalResultStoringCompiler.java:66)
+	at org.gradle.api.internal.tasks.compile.incremental.IncrementalResultStoringCompiler.execute(IncrementalResultStoringCompiler.java:52)
+	at org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler$1.call(CompileJavaBuildOperationReportingCompiler.java:64)
+	at org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler$1.call(CompileJavaBuildOperationReportingCompiler.java:48)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler.execute(CompileJavaBuildOperationReportingCompiler.java:48)
+	at org.gradle.api.tasks.compile.JavaCompile.performCompilation(JavaCompile.java:224)
+	at org.gradle.api.tasks.compile.JavaCompile.performIncrementalCompilation(JavaCompile.java:165)
+	at org.gradle.api.tasks.compile.JavaCompile.compile(JavaCompile.java:150)
+	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+	at org.gradle.api.internal.project.taskfactory.IncrementalTaskAction.doExecute(IncrementalTaskAction.java:45)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+	at org.gradle.api.internal.project.taskfactory.IncrementalTaskAction.execute(IncrementalTaskAction.java:26)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:252)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:237)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:220)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:203)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:170)
+	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:105)
+	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:44)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:59)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:56)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:56)
+	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:44)
+	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:50)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:28)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousOutputsStep.java:68)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousOutputsStep.java:38)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:61)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:26)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChangesStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChangesStep.java:28)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:189)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:75)
+	at org.gradle.internal.Either$Right.fold(Either.java:176)
+	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:73)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:48)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:64)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:35)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:62)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:40)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:76)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:45)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:136)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:66)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:38)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:41)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:297)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:44)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:31)
+	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:64)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
+	... 30 more
+
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.2.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 52s
+63 actionable tasks: 63 executed
