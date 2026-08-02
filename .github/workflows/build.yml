@@ -19,81 +19,43 @@ jobs:
       - name: Clone termux-packages
         run: git clone --depth 1 https://github.com/termux/termux-packages.git termux-packages
 
-      - name: Add swap space (mitigate possible OOM during compilation)
+      - name: Add swap space
         continue-on-error: true
         run: |
           set +e
-          echo "Disk space before:"; df -h /
-          if sudo fallocate -l 8G /swapfile; then
-            echo "fallocate succeeded"
-          else
-            echo "fallocate failed, falling back to dd"
-            sudo dd if=/dev/zero of=/swapfile bs=1M count=8192 status=progress
-          fi
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
+          sudo dd if=/dev/zero of=/swapfile bs=1M count=8192 status=progress
+          sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
           free -h
-          echo "Swap step finished with status $?"
 
-      - name: Write package-name override (officially supported fork mechanism)
+      - name: Write package-name override
         run: |
           mkdir -p "$HOME/.config/termux"
-          cat > "$HOME/.config/termux/termuxrc.sh" << 'EOF'
-          TERMUX_APP__PACKAGE_NAME="com.palmclaw.termux"
-          EOF
+          printf 'TERMUX_APP__PACKAGE_NAME="com.palmclaw.termux"\n' > "$HOME/.config/termux/termuxrc.sh"
 
-      - name: Increase download resilience (TLS workaround + longer retry budget for flaky upstream mirrors)
+      - name: Patch build-bootstraps.sh
         working-directory: termux-packages
         run: |
-          set -o pipefail
-          # xorg.freedesktop.org is currently serving a certificate that fails
-          # validation (needed transitively for xorg-util-macros -> fontconfig).
-          # Skip TLS verification only for that host; the downloaded file's
-          # SHA-256 is still checked against the pinned checksum in build.sh,
-          # so content integrity is unaffected.
+          # Remove defunct standalone bzip2 (absorbed into libbz2)
+          sed -i '/PACKAGES+=("bzip2")/d' scripts/build-bootstraps.sh
+          # Redirect final zip to /home/builder/ (writable) instead of mounted volume (not writable by builder user)
+          sed -i 's|mv -f "${BOOTSTRAP_TMPDIR}/bootstrap-${1}.zip" "$TERMUX_PACKAGES_DIRECTORY/"|mv -f "${BOOTSTRAP_TMPDIR}/bootstrap-${1}.zip" "/home/builder/bootstrap-${1}.zip"|' \
+            scripts/build-bootstraps.sh
+          grep -n 'bootstrap-.*\.zip' scripts/build-bootstraps.sh | tail -3
+
+      - name: Workaround xorg.freedesktop.org TLS cert issue
+        working-directory: termux-packages
+        run: |
           sed -i \
             's/--location           # Follow redirects/--location           # Follow redirects\n\t\t$( [[ "$URL" == *xorg.freedesktop.org* ]] \&\& echo --insecure )/' \
             scripts/build/termux_download.sh
 
-          # Some upstream mirrors (e.g. download.savannah.gnu.org) return
-          # transient 502s / timeouts. The default retry budget (2 outer
-          # attempts x 120s curl budget, ~5-6 min total) is too short to
-          # ride those out. Widen it; checksum verification is unaffected.
-          sed -i 's/--retry-max-time 120 # Stop retrying if it'"'"'s still failing after 120 seconds/--retry-max-time 180 # Stop retrying if it'"'"'s still failing after 180 seconds/' scripts/build/termux_download.sh
-          sed -i 's/local retry=2/local retry=6/' scripts/build/termux_download.sh
-          sed -i 's/local delay=60/local delay=45/' scripts/build/termux_download.sh
-          grep -n "insecure\|retry-max-time\|local retry=\|local delay=" scripts/build/termux_download.sh
-          grep -n "insecure" scripts/build/termux_download.sh
-
-      - name: Fix termux-am's Android SDK to a writable, self-owned directory
+      - name: Fix termux-am Android SDK (redirect to writable dir + pre-accept licenses)
         working-directory: termux-packages
         run: |
-          # The Docker builder image's default Android SDK directory isn't
-          # writable by the "builder" user (auto-install of missing SDK
-          # components fails with "Failed to read or create install
-          # properties file"). Rather than fighting sudo/permissions on a
-          # pre-baked path (sudo is also forbidden inside package build.sh
-          # scripts by termux-packages' own guard), just redirect this one
-          # package to use a brand-new directory under $HOME that we create
-          # ourselves, so ownership is correct from the start.
           sed -i \
             's/\texport ANDROID_HOME/\tmkdir -p "$HOME\/palmclaw-android-sdk\/licenses"\n\tprintf "8933bad161af4178b1185d1a37fbf41ea5269c55\\n24333f8a63b6825ea9c5514f83c2829b004d1fee\\nd56f5187479451eabf01fb78af6dfcb131a6481e\\n" > "$HOME\/palmclaw-android-sdk\/licenses\/android-sdk-license"\n\tprintf "84831b9409646a918e30573bab4c9c91346d8abd\\n" > "$HOME\/palmclaw-android-sdk\/licenses\/android-sdk-preview-license"\n\texport ANDROID_HOME="$HOME\/palmclaw-android-sdk"/' \
             packages/termux-am/build.sh
-          grep -n -A5 -B1 "palmclaw-android-sdk" packages/termux-am/build.sh
-
-      - name: Patch build-bootstraps.sh (remove defunct standalone bzip2 package)
-        working-directory: termux-packages
-        run: |
-          # bzip2 was absorbed into libbz2 in termux-packages and no longer
-          # exists as a standalone package. build-bootstraps.sh still lists it,
-          # causing "No package bzip2 found" at bootstrap generation time.
-          # It's already pulled in transitively by apt, so safe to remove here.
-          sed -i '/PACKAGES+=("bzip2")/d' scripts/build-bootstraps.sh
-          grep -n "bzip2" scripts/build-bootstraps.sh || echo "bzip2 line removed OK"
-
-      - name: Make termux-packages dir writable for container
-        run: chmod -R a+w termux-packages/
+          grep -n -A2 "palmclaw-android-sdk" packages/termux-am/build.sh | head -6
 
       - name: Build bootstrap for ${{ matrix.arch }}
         working-directory: termux-packages
@@ -102,55 +64,40 @@ jobs:
           TERMUX_DOCKER_RUN_EXTRA_ARGS="--volume $HOME/.config/termux/termuxrc.sh:/home/builder/.config/termux/termuxrc.sh --env MAKEFLAGS=-j2" \
             ./scripts/run-docker.sh ./scripts/build-bootstraps.sh --architectures ${{ matrix.arch }} 2>&1 | tee "$RUNNER_TEMP/bootstrap-build-${{ matrix.arch }}.log"
 
-      - name: Locate produced bootstrap zip
+      - name: Extract bootstrap zip from container
         working-directory: termux-packages
         run: |
-          ls -la bootstrap-*.zip
-          cp bootstrap-${{ matrix.arch }}.zip "$RUNNER_TEMP/"
-          ls -la "$RUNNER_TEMP"/bootstrap-*.zip
+          docker cp "termux-package-builder:/home/builder/bootstrap-${{ matrix.arch }}.zip" \
+            "$RUNNER_TEMP/bootstrap-${{ matrix.arch }}.zip"
+          ls -lh "$RUNNER_TEMP/bootstrap-${{ matrix.arch }}.zip"
 
       - name: Upload bootstrap artifact
         uses: actions/upload-artifact@v4
         with:
           name: bootstrap-zip-${{ matrix.arch }}
-          path: ${{ runner.temp }}/bootstrap-*.zip
+          path: ${{ runner.temp }}/bootstrap-${{ matrix.arch }}.zip
           if-no-files-found: error
 
-      - name: Upload build log (always, for debugging)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: bootstrap-build-log-${{ matrix.arch }}
-          path: ${{ runner.temp }}/bootstrap-build-${{ matrix.arch }}.log
-          if-no-files-found: warn
-
-      - name: Publish build log to ci-logs branch (always, for debugging)
+      - name: Publish build log to ci-logs branch
         if: always()
         continue-on-error: true
         run: |
           set +e
-          git clone --depth 1 --branch ci-logs "https://github.com/${{ github.repository }}.git" ci-logs-repo 2>/dev/null
+          git clone --depth 1 --branch ci-logs "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" ci-logs-repo 2>/dev/null
           if [ ! -d ci-logs-repo ]; then
-            git clone --depth 1 "https://github.com/${{ github.repository }}.git" ci-logs-repo
-            cd ci-logs-repo
-            git checkout --orphan ci-logs
-            git rm -rf . >/dev/null 2>&1
+            git clone --depth 1 "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" ci-logs-repo
+            cd ci-logs-repo; git checkout --orphan ci-logs; git rm -rf . >/dev/null 2>&1
           else
             cd ci-logs-repo
           fi
-          git config user.email "ci-bot@local"
-          git config user.name "CI Bot"
+          git config user.email "ci-bot@local"; git config user.name "CI Bot"
           mkdir -p logs
           cp "${{ runner.temp }}/bootstrap-build-${{ matrix.arch }}.log" "logs/bootstrap-${{ matrix.arch }}-${{ github.run_id }}.log" 2>/dev/null || echo "no log" > "logs/bootstrap-${{ matrix.arch }}-${{ github.run_id }}.log"
           cp "logs/bootstrap-${{ matrix.arch }}-${{ github.run_id }}.log" "logs/bootstrap-${{ matrix.arch }}-latest.log"
           git add logs/
-          git commit -m "Bootstrap build log for ${{ matrix.arch }} run ${{ github.run_id }}" || true
+          git commit -m "Log ${{ matrix.arch }} run ${{ github.run_id }}" || true
           git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
-          for i in 1 2 3 4 5; do
-            git push origin ci-logs && break
-            git pull --rebase origin ci-logs
-            sleep $((RANDOM % 5 + 1))
-          done
+          for i in 1 2 3 4 5; do git push origin ci-logs && break; git pull --rebase origin ci-logs; sleep $((RANDOM%5+1)); done
 
   build-app:
     needs: build-bootstrap
@@ -181,13 +128,11 @@ jobs:
         run: |
           mkdir -p app/src/main/cpp
           for arch in aarch64 arm i686 x86_64; do
-            src=$(find bootstrap-artifacts -iname "bootstrap-${arch}.zip" | head -n1)
-            if [ -z "$src" ]; then
-              echo "Missing bootstrap zip for $arch"; exit 1
-            fi
+            src=$(find bootstrap-artifacts -name "bootstrap-${arch}.zip" | head -1)
+            [ -z "$src" ] && echo "Missing $arch" && exit 1
             cp "$src" "app/src/main/cpp/bootstrap-${arch}.zip"
           done
-          ls -la app/src/main/cpp/
+          ls -lh app/src/main/cpp/
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -199,8 +144,7 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
           key: gradle-termux-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            gradle-termux-${{ runner.os }}-
+          restore-keys: gradle-termux-${{ runner.os }}-
 
       - name: Build debug APK
         id: build
@@ -215,32 +159,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: palmclaw-terminal-debug
-          path: |
-            app/build/outputs/apk/**/*.apk
+          path: app/build/outputs/apk/**/*.apk
           if-no-files-found: warn
-
-      - name: Publish build log on failure
-        if: steps.build.outcome == 'failure'
-        continue-on-error: true
-        env:
-          GH_TOKEN_FOR_PUSH: x
-        run: |
-          set +e
-          git config user.email "ci-bot@local"
-          git config user.name "CI Bot"
-          git fetch origin ci-logs:ci-logs 2>/dev/null
-          if git show-ref --verify --quiet refs/heads/ci-logs; then
-            git checkout ci-logs
-          else
-            git checkout --orphan ci-logs
-            git rm -rf . >/dev/null 2>&1
-          fi
-          mkdir -p logs
-          tail -n 2000 build.log > "logs/run-${{ github.run_id }}.log"
-          cp "logs/run-${{ github.run_id }}.log" logs/latest.log
-          git add logs/
-          git commit -m "Build log for run ${{ github.run_id }}"
-          git push origin ci-logs --force
 
       - name: Fail job if build failed
         if: steps.build.outcome == 'failure'
