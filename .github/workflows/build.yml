@@ -42,12 +42,21 @@ jobs:
             scripts/build-bootstraps.sh
           grep -n 'bootstrap-.*\.zip' scripts/build-bootstraps.sh | tail -3
 
-      - name: Workaround xorg.freedesktop.org TLS cert issue
+      - name: Patch termux_download.sh (increase retry budget for flaky upstream mirrors)
         working-directory: termux-packages
         run: |
+          # savannah.gnu.org and other GNU mirrors are intermittently returning
+          # 502/timeouts. Increase retry budget from 2 extra to 30, with 30s delay
+          # so a ~30-minute outage doesn't kill the build.
+          sed -i 's/local retry=2$/local retry=30/' scripts/build/termux_download.sh
+          sed -i 's/local delay=60$/local delay=30/' scripts/build/termux_download.sh
+          sed -i 's/--retry 5/--retry 10/' scripts/build/termux_download.sh
+          sed -i 's/--retry-max-time 120/--retry-max-time 300/' scripts/build/termux_download.sh
+          # xorg.freedesktop.org has a broken/expired cert - skip TLS only for that host
           sed -i \
             's/--location           # Follow redirects/--location           # Follow redirects\n\t\t$( [[ "$URL" == *xorg.freedesktop.org* ]] \&\& echo --insecure )/' \
             scripts/build/termux_download.sh
+          grep -n "retry\|delay\|insecure" scripts/build/termux_download.sh | grep -v "#" | head -15
 
       - name: Fix termux-am Android SDK (redirect to writable dir + pre-accept licenses)
         working-directory: termux-packages
