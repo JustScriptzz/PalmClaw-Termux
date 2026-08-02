@@ -162,6 +162,28 @@ jobs:
           path: app/build/outputs/apk/**/*.apk
           if-no-files-found: warn
 
+      - name: Publish build log on failure
+        if: steps.build.outcome == 'failure'
+        continue-on-error: true
+        run: |
+          set +e
+          git config user.email "ci-bot@local"
+          git config user.name "CI Bot"
+          git fetch origin ci-logs:ci-logs 2>/dev/null || true
+          if git show-ref --verify --quiet refs/heads/ci-logs; then
+            git checkout ci-logs
+          else
+            git checkout --orphan ci-logs
+            git rm -rf . >/dev/null 2>&1
+          fi
+          mkdir -p logs
+          tail -n 2000 build.log > "logs/app-run-${{ github.run_id }}.log"
+          cp "logs/app-run-${{ github.run_id }}.log" logs/app-latest.log
+          git add logs/
+          git commit -m "App build log run ${{ github.run_id }}" || true
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          for i in 1 2 3 4 5; do git push origin ci-logs && break; git pull --rebase origin ci-logs; sleep 2; done
+
       - name: Fail job if build failed
         if: steps.build.outcome == 'failure'
         run: exit 1
