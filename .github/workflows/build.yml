@@ -92,6 +92,9 @@ jobs:
           sed -i '/PACKAGES+=("bzip2")/d' scripts/build-bootstraps.sh
           grep -n "bzip2" scripts/build-bootstraps.sh || echo "bzip2 line removed OK"
 
+      - name: Make termux-packages dir writable for container
+        run: chmod -R a+w termux-packages/
+
       - name: Build bootstrap for ${{ matrix.arch }}
         working-directory: termux-packages
         run: |
@@ -102,24 +105,8 @@ jobs:
       - name: Locate produced bootstrap zip
         working-directory: termux-packages
         run: |
-          # The build script says "[*] Finished successfully" but the final
-          # mv fails (volume mount permission). The zip is complete inside
-          # the container. Copy it out with docker cp.
-          echo "--- files in mounted termux-packages dir ---"
-          find . -maxdepth 1 -iname 'bootstrap-*.zip' 2>/dev/null || echo "none in mount (expected)"
-          echo "--- searching inside container ---"
-          docker exec termux-package-builder find /home/builder -maxdepth 2 -name 'bootstrap-*.zip' 2>/dev/null || true
-          docker exec termux-package-builder find /data -maxdepth 3 -name 'bootstrap-*.zip' 2>/dev/null || true
-          CONTAINER_PATH=$(docker exec termux-package-builder find /home/builder /data -maxdepth 5 -name 'bootstrap-${{ matrix.arch }}.zip' 2>/dev/null | head -1)
-          echo "Found at: $CONTAINER_PATH"
-          if [ -n "$CONTAINER_PATH" ]; then
-            docker cp "termux-package-builder:${CONTAINER_PATH}" "$RUNNER_TEMP/bootstrap-${{ matrix.arch }}.zip"
-            echo "Copied OK"
-          else
-            echo "Not found in container either - checking alternate paths"
-            docker exec termux-package-builder find / -maxdepth 5 -name 'bootstrap-*.zip' 2>/dev/null | head -10
-            exit 1
-          fi
+          ls -la bootstrap-*.zip
+          cp bootstrap-${{ matrix.arch }}.zip "$RUNNER_TEMP/"
           ls -la "$RUNNER_TEMP"/bootstrap-*.zip
 
       - name: Upload bootstrap artifact
